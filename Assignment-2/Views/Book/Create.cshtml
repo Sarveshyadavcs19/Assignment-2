@@ -1,0 +1,101 @@
+﻿@model Assignment_2.Models.BookDetails
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<style>
+    /* Internal CSS for better styling */
+    body {
+        background-color: #f8f9fa;
+        color: #495057;
+    }
+
+    .create-container {
+        max-width: 400px;
+        margin: auto;
+        margin-top: 50px;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1, h3 {
+        text-align: center;
+        color: #007bff;
+        
+    
+    }
+
+    .link-light {
+        color: #fff;
+        text-decoration: none;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    .btn-create {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    .btn-back {
+        color: #007bff;
+    }
+
+        .btn-back:hover {
+            text-decoration: underline;
+        }
+</style>
+
+<br />
+
+<h3>BookDetails</h3>
+<hr />
+<div class="create-container">
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="BookId" class="control-label">Book ID</label>
+            <input asp-for="BookId" class="form-control" />
+            <span asp-validation-for="BookId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="BookName" class="control-label">Book Name</label>
+            <input asp-for="BookName" class="form-control" />
+            <span asp-validation-for="BookName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="BookEdition" class="control-label">Book Edition</label>
+            <input asp-for="BookEdition" class="form-control" />
+            <span asp-validation-for="BookEdition" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PublisherName" class="control-label">Publisher Name</label>
+            <input asp-for="PublisherName" class="form-control" />
+            <span asp-validation-for="PublisherName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Price" class="control-label">Price</label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary btn-create float-end" />
+            <button class="btn btn-warning "> <a class="link-light" asp-action="Index"> Back To List </a> </button>
+        </div>
+    </form>
+
+</div>

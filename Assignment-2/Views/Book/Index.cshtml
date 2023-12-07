@@ -1,0 +1,193 @@
+﻿@model IEnumerable<Assignment_2.Models.BookDetails>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f8f9fa;
+        color: #343a40;
+    }
+
+    h1 {
+        color: #007bff;
+        text-align: center;
+    }
+
+    table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: center;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    th {
+        background-color: #007bff;
+        color: black;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    tbody tr:hover {
+        background-color: #f8f9fa;
+    }
+
+    .btn {
+        padding: 6px 12px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+        border: 1px solid #007bff;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        color: #fff;
+        border: 1px solid #28a745;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        color: #fff;
+        border: 1px solid #dc3545;
+    }
+
+    .link-light {
+        color: #fff;
+        text-decoration: none;
+    }
+
+        .link-light:hover {
+            text-decoration: underline;
+        }
+
+    .dropdown {
+        margin-bottom: 10px;
+    }
+
+    p {
+        margin-top: 0;
+        margin-bottom: 10px; /* Increase bottom margin for spacing */
+    }
+
+    label {
+        margin-top: 10 px;
+        margin-right: 10px;
+    }
+    #drop{
+        margin-top: 10 px;
+        margin-right:0px;
+    }
+    #priceDropdown {
+        margin-top:10 px;
+        margin-right: 15px; /* Add right margin to the dropdown for spacing */
+    }
+
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Function to handle the search and dropdown
+        $("#searchInput, #priceDropdown").on("keyup change", function () {
+            var searchTerm = $("#searchInput").val().toLowerCase();
+            var selectedPrice = $("#priceDropdown").val();
+            filterTable(searchTerm, selectedPrice);
+        });
+    });
+
+    function filterTable(searchTerm, selectedPrice) {
+        $("#bookTable tbody tr").filter(function () {
+            var rowText = $(this).text().toLowerCase();
+            var price = rowText.includes(selectedPrice) || selectedPrice === "All";
+            var search = rowText.includes(searchTerm);
+            $(this).toggle(price && search);
+        });
+    }
+</script>
+
+<br />
+<h1>List Of Books</h1>
+<p style="float:right">
+    <button class="btn btn-primary "> <a class="link-light" asp-action="Create"> + Add Book</a> </button>
+</p>
+
+<p id="drop" style="float:right">
+<label for="priceDropdown">Select Price:</label>
+<select id="priceDropdown">
+    <option value="All">All Price</option>
+    @{
+        var uniquePrices = Model.Select(m => m.Price).Distinct();
+        foreach (var price in uniquePrices)
+        {
+            <option value="@price">@price</option>
+        }
+    }
+</select>
+</p>
+
+<input type="text" id="searchInput" placeholder="Search...">
+<table id="bookTable" class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BookId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookEdition)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PublisherName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th class="align-text-center">
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookEdition)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PublisherName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <button class="btn btn-success">
+                        <a class="link-light" asp-action="Edit" asp-route-id="@item.BookId">Edit</a>
+                    </button>
+                    <button class="btn btn-danger">
+                        <a onclick="confirmDelete(@item.BookId)" class="link-light" asp-action="Delete" asp-route-id="@item.BookId">Delete</a>
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
