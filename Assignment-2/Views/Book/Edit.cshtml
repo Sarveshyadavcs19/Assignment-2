@@ -49,6 +49,9 @@
         text-decoration: none;
     }
 
+        .link-light:hover {
+            text-decoration: underline;
+        }
     .btn-back:hover {
         text-decoration: underline;
     }
@@ -91,8 +94,8 @@
         </div>
 
         <div class="form-group">
-            <input type="submit" value="Save" class="btn btn-primary btn-save float-end rounded-pill" />
-            <button class="btn btn-warning rounded-pill "> <a class="link-light" asp-action="Index"> Back To List </a> </button>
+            <input type="submit" value="Save" class="btn btn-primary btn-save float-end rounded-pill link-light" />
+            <button class="btn btn-warning rounded-pill link-light"> <a class="link-light" asp-action="Index"> Back To List </a> </button>
             
         </div>
 
