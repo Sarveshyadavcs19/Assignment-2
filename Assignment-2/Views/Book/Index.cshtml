@@ -180,6 +180,9 @@
                     @Html.DisplayFor(modelItem => item.Price)
                 </td>
                 <td>
+                    <button class="btn btn-info rounded-pill">
+                        <a class="link-light" asp-action="Details" asp-route-id="@item.BookId">Details</a>
+                    </button>
                     <button class="btn btn-success rounded-pill">
                         <a class="link-light" asp-action="Edit" asp-route-id="@item.BookId">Edit</a>
                     </button>
