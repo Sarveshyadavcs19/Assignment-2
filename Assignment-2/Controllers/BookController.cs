@@ -52,7 +52,17 @@ namespace Assignment_2.Controllers
             }
             return View(book);
         }
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+            BookDetails Book = GetBookById(id);
+            if (Book == null)
+            {
+                return RedirectToAction("Index");
+            }
 
+            return View("Details", Book); 
+        }
         [HttpGet]
         public ActionResult Delete(int id)
         {

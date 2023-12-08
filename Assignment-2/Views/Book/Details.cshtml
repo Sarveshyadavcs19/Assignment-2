@@ -1,0 +1,68 @@
+﻿@model Assignment_2.Models.BookDetails
+
+@{
+    ViewData["Title"] = "Book Details";
+}
+
+<style>
+    /* Internal CSS for better styling */
+    .card {
+        width: 400px;
+        margin: 20px auto;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+    }
+
+        .card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+    .card-body {
+        padding: 20px;
+        text-align:center;
+    }
+
+    .card-title {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .card-text {
+        font-size: 1.1em;
+        color: #555;
+        text-align:center;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: #fff;
+        text-align: center;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .btn-primary{
+            text-align:center;
+            justify-content:center;
+        }
+
+        .link-light:hover {
+            text-decoration: underline;
+        }
+</style>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">@Model.BookName</h5>
+        <p class="card-text">
+            <strong>Edition:</strong> @Model.BookEdition<br />
+            <strong>Publisher:</strong> @Model.PublisherName<br />
+            <strong>Price:</strong> $@Model.Price
+        </p>
+        <a id="btn" href="@Url.Action("Index")" class="btn btn-primary link-light rounded-pill text-center">Back To List</a>
+    </div>
+</div>
