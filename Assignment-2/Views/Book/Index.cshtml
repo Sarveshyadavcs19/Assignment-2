@@ -11,7 +11,7 @@
         color: #343a40;
     }
 
-    h1 {
+    h2 {
         color: #007bff;
         text-align: center;
     }
@@ -92,6 +92,12 @@
         margin-right: 15px; /* Add right margin to the dropdown for spacing */
     }
 
+    img.book-image {
+        height: 2em; /* Set the height equal to the font size of h1 tag */
+        width: auto;
+        vertical-align: middle;
+    }
+
 </style>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -117,9 +123,14 @@
 </script>
 
 <br />
-<h1>List Of Books</h1>
+<div class="row">
+    <div class="col-6 mx-auto text-center">
+        <h2><img class="book-image rounded-circle" src="~/download.jpeg" alt="Book Image" />&nbspList Of Books</h2>
+    </div>
+</div>
+
 <p style="float:right">
-    <button class="btn btn-primary  rounded-pill"> <a class="link-light" asp-action="Create"> + Add Book</a> </button>
+    <button class="btn btn-primary  rounded-pill"> <a class="link-light" asp-action="Create"><i class="bi bi-plus-lg"></i>&nbspAdd Book</a> </button>
 </p>
 
 <p id="drop" style="float:right">
@@ -181,13 +192,13 @@
                 </td>
                 <td>
                     <button class="btn btn-info rounded-pill">
-                        <a class="link-light" asp-action="Details" asp-route-id="@item.BookId">Details</a>
+                        <a class="link-light" asp-action="Details" asp-route-id="@item.BookId"> <i class="bi bi-info-square"></i>&nbspDetails</a>
                     </button>
                     <button class="btn btn-success rounded-pill">
-                        <a class="link-light" asp-action="Edit" asp-route-id="@item.BookId">Edit</a>
+                        <a class="link-light" asp-action="Edit" asp-route-id="@item.BookId"> <i class="bi bi-pencil-square"></i>&nbspEdit</a>
                     </button>
                     <button class="btn btn-danger rounded-pill">
-                        <a onclick="confirmDelete(@item.BookId)" class="link-light" asp-action="Delete" asp-route-id="@item.BookId">Delete</a>
+                        <a onclick="confirmDelete(@item.BookId)" class="link-light" asp-action="Delete" asp-route-id="@item.BookId"> <i class="bi bi-trash"></i>&nbspDelete</a>
                     </button>
                 </td>
             </tr>

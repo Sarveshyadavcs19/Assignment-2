@@ -1,4 +1,6 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 using Assignment_2.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,7 +8,7 @@ namespace Assignment_2.Controllers
 {
     public class BookController : Controller
     {
-        private string connectionString = "Data Source= LAPTOP-G5DH5D7B\\SQLEXPRESS; Database= BookData; Integrated Security= True; TrustServerCertificate=True;";
+        private string connectionString = "Data Source=LAPTOP-G5DH5D7B\\SQLEXPRESS; Database=BookData; Integrated Security=True; TrustServerCertificate=True;";
 
         public ActionResult Index()
         {
@@ -37,7 +39,7 @@ namespace Assignment_2.Controllers
             BookDetails book = GetBookById(id);
             if (book == null)
             {
-                return RedirectToAction("Edit");
+                return RedirectToAction("Index");
             }
             return View(book);
         }
@@ -52,6 +54,7 @@ namespace Assignment_2.Controllers
             }
             return View(book);
         }
+
         [HttpGet]
         public ActionResult Details(int id)
         {
@@ -61,15 +64,16 @@ namespace Assignment_2.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View("Details", Book); 
+            return View("Details", Book);
         }
+
         [HttpGet]
         public ActionResult Delete(int id)
         {
             BookDetails book = GetBookById(id);
             if (book == null)
             {
-                return RedirectToAction("Delete");
+                return RedirectToAction("Index");
             }
             return View(book);
         }
@@ -172,12 +176,10 @@ namespace Assignment_2.Controllers
                 }
                 catch (SqlException ex)
                 {
-
                     ViewBag.Error = $"SQL Error: {ex.Message}";
                 }
                 catch (Exception ex)
                 {
-
                     ViewBag.Error = $"Error: {ex.Message}";
                 }
             }
@@ -193,12 +195,11 @@ namespace Assignment_2.Controllers
                 {
                     connection.Open();
 
-                    string query = "INSERT INTO BookTable (BookId, BookName, BookEdition, PublisherName, Price) " +
-                                   "VALUES (@BookId, @BookName, @BookEdition, @PublisherName, @Price)";
+                    string query = "INSERT INTO BookTable (BookName, BookEdition, PublisherName, Price) " +
+                                   "VALUES (@BookName, @BookEdition, @PublisherName, @Price)";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@BookId", book.BookId);
                         command.Parameters.AddWithValue("@BookName", book.BookName);
                         command.Parameters.AddWithValue("@BookEdition", book.BookEdition);
                         command.Parameters.AddWithValue("@PublisherName", book.PublisherName);
