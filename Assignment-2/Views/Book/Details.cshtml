@@ -5,10 +5,10 @@
 }
 
 <style>
-    /* Internal CSS for better styling */
     .card {
-        width: 400px;
+        width: 600px;
         margin: 20px auto;
+        display: flex;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         transition: 0.3s;
     }
@@ -18,51 +18,77 @@
         }
 
     .card-body {
+        display: flex;
+        flex-direction: column;
         padding: 20px;
-        text-align:center;
+        text-align: center;
     }
 
     .card-title {
         font-size: 1.5em;
         margin-bottom: 10px;
         text-align: center;
+        color: #007bff;
     }
 
     .card-text {
         font-size: 1.1em;
         color: #555;
-        text-align:center;
-    }
-
-    .btn-primary {
-        background-color: #007bff;
-        border-color: #007bff;
-        color: #fff;
         text-align: center;
     }
 
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-        }
-        .btn-primary{
-            text-align:center;
-            justify-content:center;
-        }
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
 
-        .link-light:hover {
-            text-decoration: underline;
-        }
+    .btn-primary {
+        text-align: center;
+        justify-content: center;
+    }
+
+    .link-light:hover {
+        text-decoration: underline;
+    }
+
+    h1, h3, h2 {
+        text-align: center;
+        color: #007bff;
+    }
+
+    img.book-image {
+        height: 2em; /* Set the height equal to the font size of h1 tag */
+        width: auto;
+        vertical-align: middle;
+    }
+    .book-image2 {
+        max-width: 300px;
+        margin-left: 0px;
+        text-align:left;
+    }
 </style>
-
+<br />
+<div class="row">
+    <div class="col-6 mx-auto text-center">
+        <h2><img class="book-image rounded-circle" src="~/download.jpeg" alt="Book Image" />&nbspBookDetails</h2>
+    </div>
+</div>
 <div class="card">
+
     <div class="card-body">
-        <h5 class="card-title">@Model.BookName</h5>
-        <p class="card-text">
-            <strong>Edition:</strong> @Model.BookEdition<br />
-            <strong>Publisher:</strong> @Model.PublisherName<br />
-            <strong>Price:</strong> $@Model.Price
-        </p>
-        <a id="btn" href="@Url.Action("Index")" class="btn btn-primary link-light rounded-pill text-center">Back To List</a>
+
+        <div>
+
+            <div>
+                <img class="book-image2 align-content-end rounded-circle" src="~/download.jpeg" alt="Book Image" />
+            </div>
+            <h5 class="card-title">@Model.BookName</h5>
+            <p class="card-text">
+                <strong>Edition:</strong> @Model.BookEdition<br />
+                <strong>Publisher:</strong> @Model.PublisherName<br />
+                <strong>Price:</strong> $@Model.Price
+            </p>
+            <a id="btn" href="@Url.Action("Index")" class="btn btn-warning link-light rounded-pill"> <i class="bi bi-arrow-left-short"></i> Back To List</a>
+        </div>
     </div>
 </div>

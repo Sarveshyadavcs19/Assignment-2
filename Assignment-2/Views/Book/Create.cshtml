@@ -21,7 +21,7 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
-    h1, h3 {
+    h1, h3,h2 {
         text-align: center;
         color: #007bff;
         
@@ -53,24 +53,32 @@
         color: #007bff;
     }
 
-        .btn-back:hover {
-            text-decoration: underline;
-        }
+    .btn-back:hover {
+        text-decoration: underline;
+    }
+
+    img.book-image {
+        height: 2em; /* Set the height equal to the font size of h1 tag */
+        width: auto;
+        vertical-align: middle;
+    }
 </style>
 
 <br />
-
-<h3>BookDetails</h3>
-<hr />
+<div class="row">
+    <div class="col-6 mx-auto text-center">
+        <h2><img class="book-image rounded-circle" src="~/download.jpeg" alt="Book Image" />&nbspBookDetails</h2>
+    </div>
+</div>
 <div class="create-container">
     <form asp-action="Create">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-        <div class="form-group">
+        @* <div class="form-group">
             <label asp-for="BookId" class="control-label">Book ID</label>
             <input asp-for="BookId" class="form-control" />
             <span asp-validation-for="BookId" class="text-danger"></span>
-        </div>
+        </div> *@
 
         <div class="form-group">
             <label asp-for="BookName" class="control-label">Book Name</label>
@@ -98,7 +106,7 @@
 
         <div class="form-group">
             <input type="submit" value="Create" class="btn btn-primary btn-create float-end rounded-pill link-light" />
-            <button class="btn btn-warning rounded-pill link-light "> <a class="link-light" asp-action="Index"> Back To List </a> </button>
+            <button class="btn btn-warning rounded-pill link-light "> <a class="link-light" asp-action="Index"><i class="bi bi-arrow-left-short"></i> Back To List </a> </button>
         </div>
     </form>
 
